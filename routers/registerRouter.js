@@ -120,4 +120,21 @@ router.post("/findnumber",(req,res)=>{
     })
 })
 
+
+router.post("/findnumberotp",(req,res)=>{
+    const {phoneNumber}=req.body;
+
+    console.log("-----phoneNumber-----",phoneNumber);
+    
+    Register.findOne({phoneNumber}).then(result=>{
+    if(result){
+        return res.json({success:"This number is already registered in mobilio"})
+    }
+    else{
+        return res.json({notfound:"You enter the number is not registered in mobilio"})
+    }
+    }).catch(err=>console.log(err))
+
+})
+
 module.exports=router;
