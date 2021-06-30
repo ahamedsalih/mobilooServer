@@ -7,12 +7,14 @@ const Domain=require("../models/domain");
 const Group=require("../models/groupModel/groupSchema");
 const Wallpaper=require("../models/wallpaperThemes");
 const Token=require("../models/tokens/tokens");
+const UserList=require("../models/userLists");
 
 // const Room=require("../models/roomModel")
 
 const bcrypt=require("bcryptjs");
 
 const jwt=require("jsonwebtoken");
+const userList = require("../models/userList");
 
 // const crypto=require("crypto");
 
@@ -286,7 +288,44 @@ router.post("/register/token/user",(req,res)=>{
   })
 
 
+router.post("/userContactRoomId",(req,res)=>{
+    const {roomId,from,to}=req.body;
 
+    UserList.findOne({roomId}).then(result=>{
+        if(result){
+            // return res.json({already:"roomid already in db"});
+            console.log("roomId already in db ")
+            res.json("already saved")
+        }
+        else{
+            const newRoomId=new UserList({
+                roomId,
+                from,
+                to
+            })
+
+          newRoomId.save().then(result=>{
+              console.log("roomId saved successfully")
+              res.json("successfully saved")
+          }).catch(err=>console.log(err))  
+        }
+    }).catch(err=>console.log(err))
+})
+
+router.post("/getChatList",(req,res)=>{
+   const {id}=req.body;
+
+   UserList.find({from:id}).populate("to").then(result=>{
+       if(result){
+           res.json(result)
+
+       }
+       else{
+           res.json({notfound:"chats not found"})
+
+       }
+   })
+})
 
 
 
