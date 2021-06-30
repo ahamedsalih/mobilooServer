@@ -14,7 +14,7 @@ const UserList=require("../models/userLists");
 const bcrypt=require("bcryptjs");
 
 const jwt=require("jsonwebtoken");
-const userList = require("../models/userList");
+
 
 // const crypto=require("crypto");
 
