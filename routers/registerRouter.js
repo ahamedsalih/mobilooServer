@@ -104,4 +104,18 @@ router.post("/find/user",(req,res)=>{
     })
 })
 
+
+router.post("/findnumber",(req,res)=>{
+    const {phoneNumber}=req.body;
+
+    Register.findOne({phoneNumber}).then(result=>{
+        if(result){
+            return res.json("user exists")
+        }
+        else{
+            return res.json({notfound:"user not found"})
+        }
+    })
+})
+
 module.exports=router;
