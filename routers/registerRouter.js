@@ -110,10 +110,12 @@ router.post("/findnumber",(req,res)=>{
 
     Register.findOne({phoneNumber}).then(result=>{
         if(result){
-            return res.json("user exists")
+            res.json(result)
+             console.log("user exists")
         }
         else{
-            return res.json({notfound:"user not found"})
+            
+             console.log("user not found")
         }
     })
 })
