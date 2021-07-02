@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 
-  
+   
 
 const postingSchema=new mongoose.Schema({
     text:{
@@ -19,6 +19,10 @@ const postingSchema=new mongoose.Schema({
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Register"
+    },
+    postCategory:{
+        type:String,
+        required:true
     },
     likes:[]
 },{timestamps:true})

@@ -87,15 +87,16 @@ router.post("/status/user/story",(req,res)=>{
 
 router.post("/posting/user",(req,res)=>{
 
-  const {text,image,userId,video}=req.body;
+  const {text,image,userId,video,postCategory}=req.body;
 
-  console.log("---posting---",text,image);
+  console.log("---posting---",text,image,postCategory,userId);
 
  const post=new Posting({
      text,
      image,
      userId,
-     video
+     video,
+     postCategory
  })
 
  post.save().then(result=>{
