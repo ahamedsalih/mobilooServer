@@ -160,6 +160,17 @@ router.post("/unlike/post",(req,res)=>{
 })
 
 
+router.post("/postCategory",(req,res)=>{
+    const {postCategory}=req.body;
+
+    // console.log("category---->>>>",postCategory);
+
+    Posting.find({postCategory}).populate("userId").sort("-createdAt").then(result=>{
+        return res.json(result)
+    }).catch(err=>console.log(err))
+})
+
+
 
 
 module.exports=router;
