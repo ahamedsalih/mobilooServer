@@ -214,11 +214,11 @@ socket.on("join", ({ name, room,nickname }) => {
     console.log("name&room",name, room,nickname);
 
     const { error, user } = addUser({ id: socket.id, name, room,nickname });
-  //   const onlineUsers=[];
-  //  const onlineuser=({socketId:user.id,name:user.name,room:user.room});
-  // onlineUsers.push(onlineuser)
-  //  socket.emit("onlinejoineduser",onlineUsers);
-  //  console.log("onlineUser",onlineuser)
+    const onlineUsers=[];
+   const onlineuser=({socketId:user.id,name:user.name,room:user.room});
+   onlineUsers.push(onlineuser)
+   socket.emit("onlinejoineduser",onlineUsers);
+   console.log("onlineUser",onlineuser)
     if (error) {
       return error;
     }
