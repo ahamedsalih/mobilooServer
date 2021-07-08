@@ -213,15 +213,26 @@ socket.on("disconnect-group",()=>{
 socket.on("join", ({ name, room,nickname }) => {
     console.log("name&room",name, room,nickname);
 
+
+
     const { error, user } = addUser({ id: socket.id, name, room,nickname });
-    const onlineUsers=[];
-   const onlineuser=({socketId:user.id,name:user.name,room:user.room});
-   onlineUsers.push(onlineuser)
-   socket.emit("onlinejoineduser",onlineUsers);
-   console.log("onlineUser",onlineuser)
+
+  
+   
     if (error) {
       return error;
     }
+
+
+
+
+    const onlineuser=({socketId:user.id,name:user.name,room:user.room});
+
+    io.emit("onlinejoineduser",onlineuser.name);
+
+    // const onlineUsers=[];
+    
+
     // socket.emit("message", {user: "admin",text: `${user.name}, ${user.room}`
     // }
     // );
@@ -240,9 +251,12 @@ socket.on("join", ({ name, room,nickname }) => {
   });
 
   //socket disconnection
-  io.on("disconnect", () => {
+  socket.on("disconnect", () => {
     const user = removeUser(socket.id);
-    console.log("disconnect",user)
+    console.log("disconnect",user);
+     
+
+ 
   });
 
 
