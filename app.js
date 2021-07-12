@@ -80,6 +80,7 @@ socket.on("joinUser",({name,roomId,userId})=>{
 })
 
 
+
 socket.on("sendMsg",(message,roomId)=>{
   // const user=getuser(socket.id);
 

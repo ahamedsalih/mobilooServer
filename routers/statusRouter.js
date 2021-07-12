@@ -117,7 +117,17 @@ router.get("/get/postings",(req,res)=>{
 
     Posting.find().populate("userId").sort("-createdAt").then(result=>{
         res.status(200).json(result)
-    })
+    }).catch(err=>console.log(err))
+})
+
+//myPost
+router.post("/mypost",(req,res)=>{
+    
+    const {id}=req.body;
+
+    Posting.find({userId:id}).populate("userId").sort("-createdAt").then(result=>{
+        res.status(200).json(result)
+    }).catch(err=>console.log(err))
 })
 
 
