@@ -37,15 +37,15 @@ stories:[{
   },
   isReadMore:{
       type:Boolean,
-      default:true
+      default:false
   },
   url_readmore:{
-      type:String
+      type:String,
+      default:""
   },
-  createdAt:{
+  created:{
     type:Date,
     default:Date.now,
-    expires:"2m",
     required:true
     
   }

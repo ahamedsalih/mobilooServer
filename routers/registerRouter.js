@@ -23,7 +23,7 @@ router.post("/register/user",(req,res)=>{
                 name,
                 image 
              })
-      
+       
            user.save().then(savedUser=>{
               const token=jwt.sign({_id:savedUser._id},JWT_SECRET)
               const {_id,name,image,phoneNumber}=savedUser;
